@@ -1,4 +1,3 @@
-
 // MARK: définitions de variables (pas compris)
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -2275,25 +2274,29 @@ function create_fragment5(ctx) {
   );
   let t0;
   let t1;
+  let if_block = (
+    /*plugin*/
+    ctx[1].settings.useEmotions && create_if_block(ctx)
+  );
+  let t2;
+  let div2;
+  let textarea;
+  let t3;
   let div1;
   let moodrating0;
   let updating_activeRating;
-  let t2;
+  let t4;
   let moodrating1;
   let updating_activeRating_1;
-  let t3;
+  let t5;
   let moodrating2;
   let updating_activeRating_2;
-  let t4;
+  let t6;
   let moodrating3;
   let updating_activeRating_3;
-  let t5;
+  let t7;
   let moodrating4;
   let updating_activeRating_4;
-  let t6;
-  let t7;
-  let div2;
-  let textarea;
   let t8;
   let div4;
   let div3;
@@ -2450,10 +2453,6 @@ function create_fragment5(ctx) {
     /*handleSetRating*/
     ctx[5]
   );
-  let if_block = (
-    /*plugin*/
-    ctx[1].settings.useEmotions && create_if_block(ctx)
-  );
   return {
     c() {
       div5 = element("div");
@@ -2461,22 +2460,21 @@ function create_fragment5(ctx) {
       h3 = element("h3");
       t0 = text(t0_value);
       t1 = space();
-      div1 = element("div");
-      create_component(moodrating0.$$.fragment);
+      if (if_block) if_block.c();
       t2 = space();
-      create_component(moodrating1.$$.fragment);
-      t3 = space();
-      create_component(moodrating2.$$.fragment);
-      t4 = space();
-      create_component(moodrating3.$$.fragment);
-      t5 = space();
-      create_component(moodrating4.$$.fragment);
-      t6 = space();
-      if (if_block)
-        if_block.c();
-      t7 = space();
       div2 = element("div");
       textarea = element("textarea");
+      t3 = space();
+      div1 = element("div");
+      create_component(moodrating0.$$.fragment);
+      t4 = space();
+      create_component(moodrating1.$$.fragment);
+      t5 = space();
+      create_component(moodrating2.$$.fragment);
+      t6 = space();
+      create_component(moodrating3.$$.fragment);
+      t7 = space();
+      create_component(moodrating4.$$.fragment);
       t8 = space();
       div4 = element("div");
       div3 = element("div");
@@ -2490,15 +2488,13 @@ function create_fragment5(ctx) {
       set_style(div0, "display", "flex");
       set_style(div0, "justify-content", "center");
       attr(div0, "class", "svelte-1yfab55");
-      attr(div1, "class", "mood-rating-container svelte-1yfab55");
+      attr(div2, "class", "note-container svelte-1yfab55");
       attr(textarea, "class", "note svelte-1yfab55");
       attr(textarea, "placeholder", "add a note about what you feel (optional)");
-      attr(div2, "class", "note-container svelte-1yfab55");
-      set_style(div2, "font-size", "100%");
+      attr(div1, "class", "mood-rating-container svelte-1yfab55");
       attr(input, "id", "datetime");
       attr(input, "type", "datetime-local");
-      input.value = /*dateTimeString*/
-      ctx[4];
+      input.value = /*dateTimeString*/ ctx[4];
       set_style(input, "cursor", "pointer");
       attr(label, "for", "datetime");
       set_style(div3, "display", "flex");
@@ -2516,27 +2512,22 @@ function create_fragment5(ctx) {
       append(div0, h3);
       append(h3, t0);
       append(div5, t1);
-      append(div5, div1);
-      mount_component(moodrating0, div1, null);
-      append(div1, t2);
-      mount_component(moodrating1, div1, null);
-      append(div1, t3);
-      mount_component(moodrating2, div1, null);
-      append(div1, t4);
-      mount_component(moodrating3, div1, null);
-      append(div1, t5);
-      mount_component(moodrating4, div1, null);
-      append(div5, t6);
-      if (if_block)
-        if_block.m(div5, null);
-      append(div5, t7);
+      if (if_block) if_block.m(div5, null);
+      append(div5, t2);
       append(div5, div2);
       append(div2, textarea);
-      set_input_value(
-        textarea,
-        /*entry*/
-        ctx[0].note
-      );
+      set_input_value(textarea, /*entry*/ ctx[0].note);
+      append(div5, t3);
+      append(div5, div1);
+      mount_component(moodrating0, div1, null);
+      append(div1, t4);
+      mount_component(moodrating1, div1, null);
+      append(div1, t5);
+      mount_component(moodrating2, div1, null);
+      append(div1, t6);
+      mount_component(moodrating3, div1, null);
+      append(div1, t7);
+      mount_component(moodrating4, div1, null);
       append(div5, t8);
       append(div5, div4);
       append(div4, div3);
@@ -2674,7 +2665,7 @@ function create_fragment5(ctx) {
           if_block = create_if_block(ctx2);
           if_block.c();
           transition_in(if_block, 1);
-          if_block.m(div5, t7);
+          if_block.m(div5, t8);
         }
       } else if (if_block) {
         group_outros();
@@ -3025,7 +3016,7 @@ var DataIntegrityService = class {
   }
 };
 
-// MARK: emotions services, a l'air de gérer les groupes d'émotions (compris)
+// MARK: émotions services, a l'air de gérer les groupes d'émotions (compris)
 // src/services/emotionsService.ts
 var EmotionsService = class {
   constructor(_plugin) {
