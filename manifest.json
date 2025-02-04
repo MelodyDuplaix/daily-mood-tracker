@@ -1,11 +1,9 @@
 {
-	"id": "mood-tracker",
-	"name": "Mood Tracker",
-	"version": "1.4.0",
+	"id": "daily-mood-tracker",
+	"name": "Daily Mood Tracker",
+	"version": "1.0.0",
 	"minAppVersion": "1.0.0",
-	"description": "Track your moods & emotions easily. Visualize tracked history and browse the past entries.",
-	"author": "dartungar",
-	"authorUrl": "https://dartungar.com",
-	"fundingUrl": "https://www.paypal.com/paypalme/dartungar",
+	"description": "Track your moods & emotions easily and integrate them into your daily note.",
+	"author": "MelodyDuplaix",
 	"isDesktopOnly": false
 }
