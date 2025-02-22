@@ -2944,31 +2944,36 @@ var FileService = class {
   }
   async appendEntryToFile(entry, file) {
     if (!(file instanceof import_obsidian8.TFile)) {
-      return;
+        return;
     }
     const result = this.getEntryAsString(entry);
     const content = await this._plugin.app.vault.read(file);
     const contentArray = content.split("\n");
     let index = contentArray.indexOf(this._plugin.settings.journalPosition);
     if (index != -1 && index != contentArray.length && index + 1 != contentArray.length) {
-      while (contentArray[index + 1].startsWith("-")) {
         index = index + 1;
-        if (index == contentArray.length || contentArray[index + 1] == void 0) {
-          break;
+        let lastNonEmptyLineIndex = index;
+        while (index < contentArray.length && !contentArray[index].startsWith("#")) {
+            if (contentArray[index].trim() !== "") {
+                lastNonEmptyLineIndex = index;
+            }
+            index = index + 1;
         }
-      }
-      contentArray.splice(index + 1, 0, `${result}`);
-      this._plugin.app.vault.modify(file, contentArray.join("\n"));
+        contentArray.splice(lastNonEmptyLineIndex + 1, 0, `${result}`);
+        if (lastNonEmptyLineIndex + 2 < contentArray.length && contentArray[lastNonEmptyLineIndex + 2] !== "") {
+            contentArray.splice(lastNonEmptyLineIndex + 2, 0, "");
+        }
+        this._plugin.app.vault.modify(file, contentArray.join("\n"));
     } else {
-      if (index + 1 != contentArray.length) {
-        this._plugin.showNotice(
-          `could not find the selected position in your journal-file -> Adding mood to the bottom.`,
-          5e3,
-          `Mood Tracker`
-        );
-      }
-      let original_content = content.replace(/\n+$/g, "");
-      this._plugin.app.vault.modify(file, original_content + "\n" + result);
+        if (index + 1 != contentArray.length) {
+            this._plugin.showNotice(
+                `could not find the selected position in your journal-file -> Adding mood to the bottom.`,
+                5e3,
+                `Mood Tracker`
+            );
+        }
+        let original_content = content.replace(/\n+$/g, "");
+        this._plugin.app.vault.modify(file, original_content + "\n" + result);
     }
     return;
   }
